@@ -8,7 +8,7 @@ package automata;
  */
 public class Edge {
   private Integer src, dst;
-  private Labels labels;
+  public Labels labels;
 
   public Edge(int src, int dst, Labels labels) {
     this.src = src;

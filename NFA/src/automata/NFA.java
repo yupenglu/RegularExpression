@@ -157,7 +157,7 @@ public class NFA extends AbstractNFA {
     	AbstractNFA tempNFA = new NFA();
     	int a = StateNumberKeeper.getNewStateNumber();
     	int b = StateNumberKeeper.getNewStateNumber();
-    	
+    	System.out.println("char is: " + c + " " + a + ", " + b);
     	tempNFA.setStartStates(mkStates(a));
     	tempNFA.setFinalStates(mkStates(b));
     	tempNFA.setEdges(mkEdges(new Edge(a, b, new Labels(c))));
@@ -199,6 +199,7 @@ public class NFA extends AbstractNFA {
     			tempNFA.setEdges(temp);
     		}
     	}
+    	tempNFA.setStartStates(nfa2.getStartStates());
     	tempNFA.setFinalStates(nfa1.getFinalStates());
     	
         return tempNFA;
@@ -282,5 +283,16 @@ public class NFA extends AbstractNFA {
             System.out.println(nfa.accept(input));
         }
         return;
+    }
+    
+    @Override
+    public String toString() {
+    	String output = "";
+    	
+    	output += "Start state: " + this.getStartStates().toString();
+    	output += "final state: " + this.getFinalStates().toString();
+    	
+    	return output;
+    	
     }
 }

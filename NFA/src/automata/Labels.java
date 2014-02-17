@@ -10,7 +10,7 @@ public class Labels {
 
   // Use integer to store the character internally
   // so that special characters can be addressed elegantly.
-  private Set<Integer> labels;
+  public Set<Integer> labels;
 
   public Labels() {
     labels = new HashSet<Integer>();

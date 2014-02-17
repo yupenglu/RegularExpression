@@ -73,20 +73,31 @@ public abstract class AbstractNFA {
     	P = addEpsilon(P);
     	E = new HashSet<Edge>();
     	
-    	for (Edge e: edges)
+    	if (input.charAt(i) == '$') continue;
+    	
+    	for (Edge e: edges) {
     		if (P.contains(e.getSrc()) && (e.getLabels().match(input.charAt(i)) ||
     				e.getLabels().match(Labels.anyChar)))
     			E.add(e);
+    		
+//    		System.out.println("i = " + i + "   " + e.labels.labels);
+    	}
+    	
     	P = new HashSet<Integer>();
     	for (Edge e: E)
     		P.add(e.getDst());
     	
     	if (P.isEmpty()) return false;
     }
+    P = addEpsilon(P);
     //now do some kind of graph traversal to see if this input can be accepted
-    for (int j: F)
+    for (int j: F) {
+    	System.out.println("P " + P);
     	if (P.contains(j))
     		return true;
+    }
+    System.out.println("reach here");
+    System.out.println(this);
     return false;
   }
   
